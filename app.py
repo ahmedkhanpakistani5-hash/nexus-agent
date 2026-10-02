@@ -1,6 +1,10 @@
 import streamlit as st
 from agent import NexusAgent
 
+# =========================================================
+# PAGE CONFIG
+# =========================================================
+
 st.set_page_config(
     page_title="NEXUS AI Agent",
     page_icon="🤖",
@@ -9,7 +13,7 @@ st.set_page_config(
 )
 
 # =========================================================
-# NEXUS COLORFUL UI
+# CUSTOM UI
 # =========================================================
 
 st.markdown("""
@@ -79,6 +83,7 @@ section[data-testid="stSidebar"] * {
 .ai-avatar {
     width: 105px;
     height: 105px;
+
     margin: 5px auto 15px auto;
 
     display: flex;
@@ -154,8 +159,11 @@ section[data-testid="stSidebar"] * {
 
 .nexus-subtitle {
     text-align: center;
+
     color: #94a3b8;
+
     font-size: 12px;
+
     letter-spacing: 3px;
 }
 
@@ -166,6 +174,7 @@ section[data-testid="stSidebar"] * {
 
 .status-card {
     border-radius: 18px;
+
     padding: 18px;
 
     text-align: center;
@@ -181,9 +190,6 @@ section[data-testid="stSidebar"] * {
     transform: translateY(-3px);
 }
 
-
-/* GREEN */
-
 .status-green {
     border: 1px solid rgba(34,197,94,0.35);
 
@@ -191,18 +197,12 @@ section[data-testid="stSidebar"] * {
         0 0 25px rgba(34,197,94,0.08);
 }
 
-
-/* PURPLE */
-
 .status-purple {
     border: 1px solid rgba(168,85,247,0.40);
 
     box-shadow:
         0 0 25px rgba(168,85,247,0.10);
 }
-
-
-/* RED */
 
 .status-red {
     border: 1px solid rgba(239,68,68,0.35);
@@ -218,15 +218,17 @@ section[data-testid="stSidebar"] * {
 
 .section-title {
     font-size: 21px;
+
     font-weight: 700;
 
     margin-top: 25px;
+
     margin-bottom: 12px;
 }
 
 
 /* =========================================================
-   INPUT
+   TEXT AREA
    ========================================================= */
 
 textarea {
@@ -268,7 +270,7 @@ textarea {
 
 
 /* =========================================================
-   MAIN RUN BUTTON
+   RUN BUTTON
    ========================================================= */
 
 .stButton > button {
@@ -307,8 +309,6 @@ textarea {
 
     box-shadow:
         0 12px 40px rgba(236,72,153,0.35);
-
-    border: none;
 }
 
 
@@ -339,33 +339,6 @@ textarea {
 
 
 /* =========================================================
-   GLASS CARD
-   ========================================================= */
-
-.glass-card {
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(20,20,40,0.85),
-            rgba(10,15,30,0.72)
-        );
-
-    border:
-        1px solid rgba(255,255,255,0.08);
-
-    border-radius: 20px;
-
-    padding: 22px;
-
-    box-shadow:
-        0 15px 45px rgba(0,0,0,0.25);
-
-    backdrop-filter: blur(15px);
-}
-
-
-/* =========================================================
    EXECUTION TIMELINE
    ========================================================= */
 
@@ -392,28 +365,52 @@ textarea {
 
 
 /* =========================================================
-   FINAL RESULT
+   RESULT HEADER
    ========================================================= */
 
-.result-card {
+.result-header {
 
     background:
         linear-gradient(
             135deg,
             rgba(34,197,94,0.08),
-            rgba(168,85,247,0.10),
-            rgba(15,23,42,0.80)
+            rgba(168,85,247,0.10)
         );
 
     border:
         1px solid rgba(34,197,94,0.22);
 
-    border-radius: 22px;
+    border-radius: 20px;
 
-    padding: 28px;
+    padding: 18px 22px;
+
+    margin-bottom: 15px;
 
     box-shadow:
-        0 0 40px rgba(34,197,94,0.06);
+        0 0 35px rgba(34,197,94,0.06);
+}
+
+
+/* =========================================================
+   MARKDOWN RESULT
+   ========================================================= */
+
+.result-container {
+
+    background:
+        rgba(8, 12, 25, 0.85);
+
+    border:
+        1px solid rgba(168,85,247,0.18);
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    line-height: 1.8;
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.20);
 }
 
 
@@ -456,6 +453,9 @@ if "plan" not in st.session_state:
 
 if "tools" not in st.session_state:
     st.session_state.tools = []
+
+if "example_goal" not in st.session_state:
+    st.session_state.example_goal = ""
 
 
 # =========================================================
@@ -513,8 +513,8 @@ with st.sidebar:
             example,
             key=example
         ):
-
             st.session_state.example_goal = example
+            st.rerun()
 
     st.markdown("---")
 
@@ -600,7 +600,7 @@ with col3:
 
 
 # =========================================================
-# GOAL INPUT
+# GOAL
 # =========================================================
 
 st.markdown(
@@ -608,18 +608,11 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-default_goal = st.session_state.get(
-    "example_goal",
-    ""
-)
-
 goal = st.text_area(
-    "Goal",
-    value=default_goal,
+    " ",
+    value=st.session_state.example_goal,
     height=120,
-    placeholder=(
-        "Tell NEXUS what you want to accomplish..."
-    ),
+    placeholder="Tell NEXUS what you want to accomplish...",
     label_visibility="collapsed"
 )
 
@@ -732,7 +725,7 @@ if run_agent:
             f"Configuration error: {e}"
         )
 
-    except Exception:
+    except Exception as e:
 
         st.error(
             "NEXUS could not complete the request. "
@@ -768,6 +761,7 @@ if st.session_state.latest_result:
             unsafe_allow_html=True
         )
 
+
     # =====================================================
     # FINAL RESULT
     # =====================================================
@@ -779,33 +773,32 @@ if st.session_state.latest_result:
         unsafe_allow_html=True
     )
 
-    st.markdown(
-        f"""
-        <div class="result-card">
+    st.markdown("""
+    <div class="result-header">
 
-            <div style="
-                color:#86efac;
-                font-size:13px;
-                font-weight:700;
-                margin-bottom:15px;
-            ">
-                🟢 TASK COMPLETED
-            </div>
-
-            <div style="
-                color:#e2e8f0;
-                line-height:1.8;
-            ">
-                {st.session_state.latest_result}
-            </div>
-
+        <div style="
+            color:#86efac;
+            font-size:13px;
+            font-weight:700;
+        ">
+            🟢 TASK COMPLETED
         </div>
-        """,
-        unsafe_allow_html=True
+
+    </div>
+    """, unsafe_allow_html=True)
+
+
+    # IMPORTANT:
+    # Render the AI response with Streamlit Markdown.
+    # Do NOT put it inside HTML.
+
+    st.markdown(
+        st.session_state.latest_result
     )
 
+
     # =====================================================
-    # DOWNLOAD
+    # DOWNLOAD RESULT
     # =====================================================
 
     st.markdown("<br>", unsafe_allow_html=True)
