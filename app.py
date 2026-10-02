@@ -30,7 +30,6 @@ st.markdown("""
     color: #f8fafc;
 }
 
-/* Hide Streamlit branding */
 #MainMenu {
     visibility: hidden;
 }
@@ -43,7 +42,13 @@ header {
     background: transparent !important;
 }
 
-/* Sidebar */
+.block-container {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    max-width: 1400px;
+}
+
+/* SIDEBAR */
 
 section[data-testid="stSidebar"] {
     background:
@@ -59,88 +64,7 @@ section[data-testid="stSidebar"] * {
     color: #e5e7eb;
 }
 
-/* Main container */
-
-.block-container {
-    padding-top: 2rem;
-    padding-bottom: 3rem;
-    max-width: 1400px;
-}
-
-/* Hero */
-
-.hero {
-    padding: 35px 35px 30px 35px;
-    border-radius: 28px;
-    background:
-        linear-gradient(
-            135deg,
-            rgba(124, 58, 237, 0.18),
-            rgba(6, 182, 212, 0.08)
-        );
-    border: 1px solid rgba(139, 92, 246, 0.25);
-    box-shadow:
-        0 0 50px rgba(124, 58, 237, 0.10),
-        inset 0 1px 0 rgba(255,255,255,0.04);
-    margin-bottom: 25px;
-}
-
-.hero-badge {
-    display: inline-block;
-    padding: 7px 14px;
-    border-radius: 30px;
-    background: rgba(6, 182, 212, 0.10);
-    border: 1px solid rgba(6, 182, 212, 0.30);
-    color: #67e8f9;
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-.hero h1 {
-    font-size: 48px;
-    font-weight: 800;
-    margin: 0;
-    letter-spacing: -2px;
-    background: linear-gradient(
-        90deg,
-        #ffffff,
-        #c4b5fd,
-        #67e8f9
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.hero p {
-    color: #94a3b8;
-    font-size: 16px;
-    margin-top: 10px;
-}
-
-/* Section titles */
-
-.section-title {
-    font-size: 22px;
-    font-weight: 700;
-    margin-top: 25px;
-    margin-bottom: 12px;
-    color: #f8fafc;
-}
-
-/* Glass cards */
-
-.glass-card {
-    background: rgba(15, 23, 42, 0.68);
-    border: 1px solid rgba(148, 163, 184, 0.12);
-    border-radius: 20px;
-    padding: 22px;
-    box-shadow:
-        0 15px 40px rgba(0,0,0,0.22),
-        inset 0 1px 0 rgba(255,255,255,0.025);
-}
-
-/* Status cards */
+/* STATUS CARDS */
 
 .status-card {
     background: linear-gradient(
@@ -164,7 +88,29 @@ section[data-testid="stSidebar"] * {
     margin-right: 7px;
 }
 
-/* Text areas */
+/* SECTION TITLES */
+
+.section-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-top: 25px;
+    margin-bottom: 12px;
+    color: #f8fafc;
+}
+
+/* GLASS CARDS */
+
+.glass-card {
+    background: rgba(15, 23, 42, 0.68);
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow:
+        0 15px 40px rgba(0,0,0,0.22),
+        inset 0 1px 0 rgba(255,255,255,0.025);
+}
+
+/* TEXT AREA */
 
 textarea {
     background: rgba(8, 15, 32, 0.90) !important;
@@ -173,7 +119,7 @@ textarea {
     border-radius: 16px !important;
 }
 
-/* File uploader */
+/* FILE UPLOADER */
 
 [data-testid="stFileUploader"] {
     background: rgba(15, 23, 42, 0.55);
@@ -182,7 +128,7 @@ textarea {
     padding: 8px;
 }
 
-/* Buttons */
+/* BUTTONS */
 
 .stButton > button {
     width: 100%;
@@ -208,7 +154,7 @@ textarea {
     border-color: #a78bfa;
 }
 
-/* Download button */
+/* DOWNLOAD BUTTON */
 
 .stDownloadButton > button {
     width: 100%;
@@ -219,14 +165,14 @@ textarea {
     font-weight: 600;
 }
 
-/* Expanders */
+/* EXPANDERS */
 
 .streamlit-expanderHeader {
     background: rgba(15, 23, 42, 0.65) !important;
     border-radius: 14px !important;
 }
 
-/* Tool pills */
+/* TOOL PILLS */
 
 .tool-pill {
     display: inline-block;
@@ -240,7 +186,7 @@ textarea {
     font-weight: 600;
 }
 
-/* Timeline */
+/* EXECUTION TIMELINE */
 
 .timeline-item {
     padding: 13px 16px;
@@ -251,7 +197,7 @@ textarea {
     color: #cbd5e1;
 }
 
-/* Footer */
+/* FOOTER */
 
 .nexus-footer {
     text-align: center;
@@ -294,6 +240,7 @@ with st.sidebar:
         text-align:center;
         padding:15px 5px 25px 5px;
     ">
+
         <div style="
             font-size:45px;
             margin-bottom:8px;
@@ -311,6 +258,7 @@ with st.sidebar:
             font-weight:600;
             letter-spacing:2px;
         ">AUTONOMOUS AI</div>
+
     </div>
     """, unsafe_allow_html=True)
 
@@ -319,22 +267,28 @@ with st.sidebar:
     st.markdown("### ⚡ Agent Capabilities")
 
     st.markdown("""
-    **🧠 Intelligent Planning**  
+    **🧠 Intelligent Planning**
+
     Converts goals into actionable plans.
 
-    **📄 Document Intelligence**  
+    **📄 Document Intelligence**
+
     Reads PDF, DOCX and TXT files.
 
-    **📚 Study Planning**  
+    **📚 Study Planning**
+
     Creates personalized study plans.
 
-    **📝 Quiz Generation**  
+    **📝 Quiz Generation**
+
     Generates 10-question MCQ quizzes.
 
-    **📊 Report Generation**  
+    **📊 Report Generation**
+
     Produces structured reports.
 
-    **🔧 Tool Execution**  
+    **🔧 Tool Execution**
+
     Selects and executes the required tools.
     """)
 
@@ -350,6 +304,7 @@ with st.sidebar:
     ]
 
     for example in examples:
+
         if st.button(example, key=example):
             st.session_state.example_goal = example
 
@@ -368,34 +323,13 @@ with st.sidebar:
 
 
 # =========================================================
-# HERO
-# =========================================================
-
-st.markdown("""
-<div class="hero">
-
-    <div class="hero-badge">
-        ● AUTONOMOUS AI AGENT
-    </div>
-
-    <h1>NEXUS AI Agent</h1>
-
-    <p>
-        Transform your goal into an intelligent plan,
-        execute the right tools, and receive a complete result.
-    </p>
-
-</div>
-""", unsafe_allow_html=True)
-
-
-# =========================================================
 # STATUS
 # =========================================================
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
+
     st.markdown("""
     <div class="status-card">
         <span class="status-dot"></span>
@@ -404,6 +338,7 @@ with col1:
     """, unsafe_allow_html=True)
 
 with col2:
+
     st.markdown("""
     <div class="status-card">
         🧠 <b>AI Planning Ready</b>
@@ -411,6 +346,7 @@ with col2:
     """, unsafe_allow_html=True)
 
 with col3:
+
     st.markdown("""
     <div class="status-card">
         ⚙️ <b>Tools Ready</b>
@@ -457,6 +393,7 @@ uploaded_file = st.file_uploader(
 )
 
 if uploaded_file:
+
     st.success(
         f"📄 {uploaded_file.name} is ready for NEXUS."
     )
@@ -473,7 +410,7 @@ run_col1, run_col2, run_col3 = st.columns([1, 2, 1])
 with run_col2:
 
     run_agent = st.button(
-        "🚀  RUN NEXUS AGENT",
+        "🚀 RUN NEXUS AGENT",
         use_container_width=True
     )
 
@@ -481,9 +418,11 @@ with run_col2:
 if run_agent:
 
     if not goal.strip():
+
         st.warning(
             "Please enter a goal before running the agent."
         )
+
         st.stop()
 
     try:
@@ -515,13 +454,18 @@ if run_agent:
             )
 
         st.session_state.latest_result = result["final_result"]
+
         st.session_state.execution = result["execution"]
+
         st.session_state.plan = result["plan"]
+
         st.session_state.tools = result["tools"]
 
     except ValueError as e:
 
-        st.error(f"Configuration error: {e}")
+        st.error(
+            f"Configuration error: {e}"
+        )
 
     except Exception:
 
@@ -538,6 +482,8 @@ if run_agent:
 if st.session_state.latest_result:
 
     st.markdown("<br>", unsafe_allow_html=True)
+
+    # EXECUTION
 
     st.markdown(
         '<div class="section-title">⚡ Agent Execution</div>',
@@ -557,7 +503,7 @@ if st.session_state.latest_result:
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Plan + tools
+    # PLAN + TOOLS
 
     left, right = st.columns(2)
 
@@ -576,10 +522,17 @@ if st.session_state.latest_result:
             st.markdown(
                 f"""
                 <div class="glass-card" style="margin-bottom:8px;">
-                    <b style="color:#a78bfa;">STEP {i}</b><br>
+
+                    <b style="color:#a78bfa;">
+                        STEP {i}
+                    </b>
+
+                    <br>
+
                     <span style="color:#cbd5e1;">
                         {step}
                     </span>
+
                 </div>
                 """,
                 unsafe_allow_html=True
@@ -609,7 +562,7 @@ if st.session_state.latest_result:
             unsafe_allow_html=True
         )
 
-    # Final result
+    # FINAL RESULT
 
     st.markdown("<br>", unsafe_allow_html=True)
 
