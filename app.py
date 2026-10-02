@@ -9,7 +9,7 @@ st.set_page_config(
 )
 
 # =========================================================
-# CUSTOM CSS
+# NEXUS COLORFUL UI
 # =========================================================
 
 st.markdown("""
@@ -23,10 +23,12 @@ st.markdown("""
 
 .stApp {
     background:
-        radial-gradient(circle at 10% 10%, rgba(124, 58, 237, 0.18), transparent 30%),
-        radial-gradient(circle at 90% 20%, rgba(6, 182, 212, 0.13), transparent 30%),
-        radial-gradient(circle at 50% 100%, rgba(79, 70, 229, 0.12), transparent 35%),
-        #070b18;
+        radial-gradient(circle at 5% 5%, rgba(168, 85, 247, 0.22), transparent 25%),
+        radial-gradient(circle at 95% 10%, rgba(239, 68, 68, 0.16), transparent 25%),
+        radial-gradient(circle at 85% 85%, rgba(34, 197, 94, 0.13), transparent 25%),
+        radial-gradient(circle at 15% 90%, rgba(6, 182, 212, 0.12), transparent 25%),
+        #050711;
+
     color: #f8fafc;
 }
 
@@ -43,169 +45,472 @@ header {
 }
 
 .block-container {
-    padding-top: 2rem;
+    max-width: 1450px;
+    padding-top: 1.5rem;
     padding-bottom: 3rem;
-    max-width: 1400px;
 }
 
-/* SIDEBAR */
+
+/* =====================================================
+   SIDEBAR
+   ===================================================== */
 
 section[data-testid="stSidebar"] {
     background:
         linear-gradient(
             180deg,
-            rgba(13, 18, 38, 0.98),
-            rgba(7, 11, 24, 0.98)
+            #0c0718 0%,
+            #10091f 50%,
+            #070b15 100%
         );
-    border-right: 1px solid rgba(139, 92, 246, 0.18);
+
+    border-right: 1px solid rgba(168, 85, 247, 0.25);
 }
 
 section[data-testid="stSidebar"] * {
     color: #e5e7eb;
 }
 
-/* STATUS CARDS */
+
+/* =====================================================
+   AI AVATAR
+   ===================================================== */
+
+.ai-avatar {
+    width: 105px;
+    height: 105px;
+    margin: 5px auto 15px auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            #c084fc,
+            #7c3aed 45%,
+            #4c1d95 100%
+        );
+
+    border: 3px solid rgba(255,255,255,0.15);
+
+    box-shadow:
+        0 0 20px rgba(168,85,247,0.7),
+        0 0 60px rgba(168,85,247,0.35);
+
+    font-size: 50px;
+
+    animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+
+    0% {
+        box-shadow:
+            0 0 20px rgba(168,85,247,0.7),
+            0 0 50px rgba(168,85,247,0.25);
+    }
+
+    50% {
+        box-shadow:
+            0 0 30px rgba(168,85,247,0.9),
+            0 0 80px rgba(168,85,247,0.4);
+    }
+
+    100% {
+        box-shadow:
+            0 0 20px rgba(168,85,247,0.7),
+            0 0 50px rgba(168,85,247,0.25);
+    }
+}
+
+
+/* =====================================================
+   NEXUS TITLE
+   ===================================================== */
+
+.nexus-title {
+    text-align: center;
+
+    font-size: 31px;
+    font-weight: 800;
+
+    background:
+        linear-gradient(
+            90deg,
+            #c084fc,
+            #f472b6,
+            #fb7185,
+            #4ade80,
+            #22d3ee
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nexus-subtitle {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+
+/* =====================================================
+   TOP STATUS
+   ===================================================== */
 
 .status-card {
-    background: linear-gradient(
-        135deg,
-        rgba(16, 185, 129, 0.10),
-        rgba(15, 23, 42, 0.75)
-    );
-    border: 1px solid rgba(16, 185, 129, 0.22);
     border-radius: 18px;
-    padding: 17px;
+    padding: 18px;
+
     text-align: center;
+
+    background: rgba(15,23,42,0.70);
+
+    backdrop-filter: blur(15px);
+
+    transition: 0.25s;
 }
 
-.status-dot {
-    display: inline-block;
-    width: 9px;
-    height: 9px;
-    background: #34d399;
-    border-radius: 50%;
-    box-shadow: 0 0 12px #34d399;
-    margin-right: 7px;
+.status-card:hover {
+    transform: translateY(-3px);
 }
 
-/* SECTION TITLES */
+
+/* GREEN */
+
+.status-green {
+    border: 1px solid rgba(34,197,94,0.35);
+
+    box-shadow:
+        0 0 25px rgba(34,197,94,0.08);
+}
+
+
+/* PURPLE */
+
+.status-purple {
+    border: 1px solid rgba(168,85,247,0.40);
+
+    box-shadow:
+        0 0 25px rgba(168,85,247,0.10);
+}
+
+
+/* RED */
+
+.status-red {
+    border: 1px solid rgba(239,68,68,0.35);
+
+    box-shadow:
+        0 0 25px rgba(239,68,68,0.08);
+}
+
+
+/* =====================================================
+   SECTION TITLE
+   ===================================================== */
 
 .section-title {
-    font-size: 22px;
+    font-size: 21px;
     font-weight: 700;
+
     margin-top: 25px;
     margin-bottom: 12px;
-    color: #f8fafc;
 }
 
-/* GLASS CARDS */
 
-.glass-card {
-    background: rgba(15, 23, 42, 0.68);
-    border: 1px solid rgba(148, 163, 184, 0.12);
-    border-radius: 20px;
-    padding: 22px;
-    box-shadow:
-        0 15px 40px rgba(0,0,0,0.22),
-        inset 0 1px 0 rgba(255,255,255,0.025);
-}
-
-/* TEXT AREA */
+/* =====================================================
+   INPUT
+   ===================================================== */
 
 textarea {
-    background: rgba(8, 15, 32, 0.90) !important;
-    color: #f8fafc !important;
-    border: 1px solid rgba(139, 92, 246, 0.25) !important;
-    border-radius: 16px !important;
+    background:
+        rgba(8, 10, 25, 0.95) !important;
+
+    color: white !important;
+
+    border:
+        1px solid rgba(168,85,247,0.35) !important;
+
+    border-radius: 18px !important;
+
+    box-shadow:
+        0 0 25px rgba(168,85,247,0.05) !important;
 }
 
-/* FILE UPLOADER */
+
+/* =====================================================
+   FILE UPLOADER
+   ===================================================== */
 
 [data-testid="stFileUploader"] {
-    background: rgba(15, 23, 42, 0.55);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(168,85,247,0.08),
+            rgba(6,182,212,0.06)
+        );
+
+    border:
+        1px dashed rgba(34,211,238,0.45);
+
     border-radius: 18px;
-    border: 1px dashed rgba(103, 232, 249, 0.30);
-    padding: 8px;
+
+    padding: 10px;
 }
 
-/* BUTTONS */
+
+/* =====================================================
+   MAIN RUN BUTTON
+   ===================================================== */
 
 .stButton > button {
+
     width: 100%;
-    border-radius: 14px;
-    border: 1px solid rgba(139, 92, 246, 0.40);
-    background: linear-gradient(
-        135deg,
-        #7c3aed,
-        #4f46e5
-    );
-    color: white;
-    font-weight: 700;
+
+    border: none;
+
+    border-radius: 16px;
+
+    padding: 14px;
+
     font-size: 15px;
-    padding: 13px 20px;
+
+    font-weight: 800;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            90deg,
+            #7c3aed,
+            #db2777,
+            #ef4444
+        );
+
+    box-shadow:
+        0 8px 30px rgba(168,85,247,0.25);
+
     transition: all 0.25s ease;
-    box-shadow: 0 8px 25px rgba(124, 58, 237, 0.22);
 }
 
 .stButton > button:hover {
-    transform: translateY(-2px);
+
+    transform: translateY(-3px);
+
     box-shadow:
-        0 12px 35px rgba(124, 58, 237, 0.38);
-    border-color: #a78bfa;
+        0 12px 40px rgba(236,72,153,0.35);
+
+    border: none;
 }
 
-/* DOWNLOAD BUTTON */
 
-.stDownloadButton > button {
-    width: 100%;
-    border-radius: 14px;
-    background: rgba(15, 23, 42, 0.8);
+/* =====================================================
+   GLASS CARD
+   ===================================================== */
+
+.glass-card {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(20,20,40,0.85),
+            rgba(10,15,30,0.72)
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    border-radius: 20px;
+
+    padding: 22px;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,0.25);
+
+    backdrop-filter: blur(15px);
+}
+
+
+/* =====================================================
+   PLAN CARDS
+   ===================================================== */
+
+.plan-card {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(124,58,237,0.12),
+            rgba(20,20,40,0.80)
+        );
+
+    border-left:
+        4px solid #a855f7;
+
+    border-radius:
+        0 15px 15px 0;
+
+    padding: 15px;
+
+    margin-bottom: 9px;
+}
+
+
+/* =====================================================
+   TOOL COLORS
+   ===================================================== */
+
+.tool-document {
+    border-color: rgba(34,211,238,0.40);
     color: #67e8f9;
-    border: 1px solid rgba(103, 232, 249, 0.30);
-    font-weight: 600;
 }
 
-/* EXPANDERS */
-
-.streamlit-expanderHeader {
-    background: rgba(15, 23, 42, 0.65) !important;
-    border-radius: 14px !important;
+.tool-study {
+    border-color: rgba(168,85,247,0.40);
+    color: #c084fc;
 }
 
-/* TOOL PILLS */
+.tool-quiz {
+    border-color: rgba(251,146,60,0.40);
+    color: #fdba74;
+}
+
+.tool-report {
+    border-color: rgba(34,197,94,0.40);
+    color: #86efac;
+}
+
+
+/* =====================================================
+   TOOL PILLS
+   ===================================================== */
 
 .tool-pill {
+
     display: inline-block;
-    padding: 8px 13px;
-    margin: 4px;
-    border-radius: 20px;
-    background: rgba(124, 58, 237, 0.13);
-    border: 1px solid rgba(139, 92, 246, 0.28);
-    color: #c4b5fd;
+
+    padding: 9px 15px;
+
+    margin: 5px;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.04);
+
+    border: 1px solid rgba(168,85,247,0.35);
+
+    color: #ddd6fe;
+
     font-size: 13px;
+
     font-weight: 600;
 }
 
-/* EXECUTION TIMELINE */
+
+/* =====================================================
+   EXECUTION
+   ===================================================== */
 
 .timeline-item {
-    padding: 13px 16px;
-    margin: 7px 0;
-    border-left: 3px solid #8b5cf6;
-    background: rgba(15, 23, 42, 0.55);
-    border-radius: 0 12px 12px 0;
+
+    padding: 14px 17px;
+
+    margin: 8px 0;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(168,85,247,0.10),
+            rgba(15,23,42,0.55)
+        );
+
+    border-left:
+        3px solid #a855f7;
+
     color: #cbd5e1;
 }
 
-/* FOOTER */
+
+/* =====================================================
+   FINAL RESULT
+   ===================================================== */
+
+.result-card {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(34,197,94,0.08),
+            rgba(168,85,247,0.10),
+            rgba(15,23,42,0.80)
+        );
+
+    border:
+        1px solid rgba(34,197,94,0.22);
+
+    border-radius: 22px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 0 40px rgba(34,197,94,0.06);
+}
+
+
+/* =====================================================
+   DOWNLOAD
+   ===================================================== */
+
+.stDownloadButton > button {
+
+    width: 100%;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(34,197,94,0.15),
+            rgba(6,182,212,0.12)
+        );
+
+    color: #86efac;
+
+    border:
+        1px solid rgba(34,197,94,0.35);
+
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
 
 .nexus-footer {
+
     text-align: center;
+
     color: #64748b;
+
     font-size: 12px;
+
     margin-top: 50px;
+
     padding-top: 20px;
-    border-top: 1px solid rgba(148,163,184,0.08);
+
+    border-top:
+        1px solid rgba(255,255,255,0.06);
 }
 
 </style>
@@ -236,29 +541,16 @@ if "tools" not in st.session_state:
 with st.sidebar:
 
     st.markdown("""
-    <div style="
-        text-align:center;
-        padding:15px 5px 25px 5px;
-    ">
+    <div class="ai-avatar">
+        🤖
+    </div>
 
-        <div style="
-            font-size:45px;
-            margin-bottom:8px;
-        ">◈</div>
+    <div class="nexus-title">
+        NEXUS
+    </div>
 
-        <div style="
-            font-size:23px;
-            font-weight:800;
-            color:#f8fafc;
-        ">NEXUS</div>
-
-        <div style="
-            color:#8b5cf6;
-            font-size:12px;
-            font-weight:600;
-            letter-spacing:2px;
-        ">AUTONOMOUS AI</div>
-
+    <div class="nexus-subtitle">
+        AUTONOMOUS AI
     </div>
     """, unsafe_allow_html=True)
 
@@ -267,34 +559,22 @@ with st.sidebar:
     st.markdown("### ⚡ Agent Capabilities")
 
     st.markdown("""
-    **🧠 Intelligent Planning**
+    🧠 **Intelligent Planning**
 
-    Converts goals into actionable plans.
+    📄 **Document Intelligence**
 
-    **📄 Document Intelligence**
+    📚 **Study Planning**
 
-    Reads PDF, DOCX and TXT files.
+    📝 **Quiz Generation**
 
-    **📚 Study Planning**
+    📊 **Report Generation**
 
-    Creates personalized study plans.
-
-    **📝 Quiz Generation**
-
-    Generates 10-question MCQ quizzes.
-
-    **📊 Report Generation**
-
-    Produces structured reports.
-
-    **🔧 Tool Execution**
-
-    Selects and executes the required tools.
+    🔧 **Autonomous Tool Execution**
     """)
 
     st.markdown("---")
 
-    st.markdown("### 💡 Example Goals")
+    st.markdown("### 💡 Quick Goals")
 
     examples = [
         "Create a study plan from this document",
@@ -305,7 +585,11 @@ with st.sidebar:
 
     for example in examples:
 
-        if st.button(example, key=example):
+        if st.button(
+            example,
+            key=example
+        ):
+
             st.session_state.example_goal = example
 
     st.markdown("---")
@@ -331,31 +615,68 @@ col1, col2, col3 = st.columns(3)
 with col1:
 
     st.markdown("""
-    <div class="status-card">
-        <span class="status-dot"></span>
-        <b>Agent Online</b>
+    <div class="status-card status-green">
+
+        🟢
+
+        <br>
+
+        <b>AGENT ONLINE</b>
+
+        <br>
+
+        <span style="color:#86efac;font-size:12px;">
+        System Ready
+        </span>
+
     </div>
     """, unsafe_allow_html=True)
+
 
 with col2:
 
     st.markdown("""
-    <div class="status-card">
-        🧠 <b>AI Planning Ready</b>
+    <div class="status-card status-purple">
+
+        🧠
+
+        <br>
+
+        <b>AI PLANNER</b>
+
+        <br>
+
+        <span style="color:#c084fc;font-size:12px;">
+        Decision Engine Ready
+        </span>
+
     </div>
     """, unsafe_allow_html=True)
+
 
 with col3:
 
     st.markdown("""
-    <div class="status-card">
-        ⚙️ <b>Tools Ready</b>
+    <div class="status-card status-red">
+
+        ⚡
+
+        <br>
+
+        <b>TOOLS READY</b>
+
+        <br>
+
+        <span style="color:#fca5a5;font-size:12px;">
+        Execution Available
+        </span>
+
     </div>
     """, unsafe_allow_html=True)
 
 
 # =========================================================
-# GOAL INPUT
+# GOAL
 # =========================================================
 
 st.markdown(
@@ -363,26 +684,28 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-default_goal = st.session_state.get("example_goal", "")
+default_goal = st.session_state.get(
+    "example_goal",
+    ""
+)
 
 goal = st.text_area(
     "Goal",
     value=default_goal,
     height=120,
     placeholder=(
-        "Example: Analyze my uploaded lecture notes, "
-        "create a 7-day study plan and generate a quiz..."
+        "Tell NEXUS what you want to accomplish..."
     ),
     label_visibility="collapsed"
 )
 
 
 # =========================================================
-# FILE UPLOAD
+# FILE
 # =========================================================
 
 st.markdown(
-    '<div class="section-title">📎 Give your agent a document (optional)</div>',
+    '<div class="section-title">📎 Upload Knowledge</div>',
     unsafe_allow_html=True
 )
 
@@ -395,22 +718,24 @@ uploaded_file = st.file_uploader(
 if uploaded_file:
 
     st.success(
-        f"📄 {uploaded_file.name} is ready for NEXUS."
+        f"📄 {uploaded_file.name} loaded successfully."
     )
 
 
 # =========================================================
-# RUN AGENT
+# RUN
 # =========================================================
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-run_col1, run_col2, run_col3 = st.columns([1, 2, 1])
+run_col1, run_col2, run_col3 = st.columns(
+    [1, 2, 1]
+)
 
 with run_col2:
 
     run_agent = st.button(
-        "🚀 RUN NEXUS AGENT",
+        "🚀  RUN NEXUS AGENT",
         use_container_width=True
     )
 
@@ -420,7 +745,7 @@ if run_agent:
     if not goal.strip():
 
         st.warning(
-            "Please enter a goal before running the agent."
+            "Please enter a goal first."
         )
 
         st.stop()
@@ -428,7 +753,7 @@ if run_agent:
     try:
 
         with st.status(
-            "🤖 NEXUS is working...",
+            "🔴 NEXUS is thinking...",
             expanded=True
         ) as status:
 
@@ -436,19 +761,19 @@ if run_agent:
 
             agent = NexusAgent()
 
-            st.write("📋 Creating execution plan...")
+            st.write("🟣 Creating execution plan...")
 
             result = agent.run(
                 goal=goal,
                 uploaded_file=uploaded_file
             )
 
-            st.write("🔧 Executing selected tools...")
+            st.write("🔵 Executing selected tools...")
 
-            st.write("✨ Synthesizing final result...")
+            st.write("🟢 Synthesizing final result...")
 
             status.update(
-                label="✅ NEXUS completed successfully!",
+                label="🟢 NEXUS completed successfully!",
                 state="complete",
                 expanded=False
             )
@@ -471,7 +796,7 @@ if run_agent:
 
         st.error(
             "NEXUS could not complete the request. "
-            "Please check your goal, uploaded file, and API configuration."
+            "Please check your goal, document and API configuration."
         )
 
 
@@ -486,7 +811,7 @@ if st.session_state.latest_result:
     # EXECUTION
 
     st.markdown(
-        '<div class="section-title">⚡ Agent Execution</div>',
+        '<div class="section-title">⚡ Agent Execution Trace</div>',
         unsafe_allow_html=True
     )
 
@@ -495,7 +820,7 @@ if st.session_state.latest_result:
         st.markdown(
             f"""
             <div class="timeline-item">
-                ✓ {item}
+                🟣 {item}
             </div>
             """,
             unsafe_allow_html=True
@@ -503,7 +828,7 @@ if st.session_state.latest_result:
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # PLAN + TOOLS
+    # PLAN / TOOLS
 
     left, right = st.columns(2)
 
@@ -521,15 +846,20 @@ if st.session_state.latest_result:
 
             st.markdown(
                 f"""
-                <div class="glass-card" style="margin-bottom:8px;">
+                <div class="plan-card">
 
-                    <b style="color:#a78bfa;">
+                    <b style="
+                        color:#c084fc;
+                        font-size:12px;
+                    ">
                         STEP {i}
                     </b>
 
                     <br>
 
-                    <span style="color:#cbd5e1;">
+                    <span style="
+                        color:#e2e8f0;
+                    ">
                         {step}
                     </span>
 
@@ -549,8 +879,25 @@ if st.session_state.latest_result:
 
         for tool in st.session_state.tools:
 
+            if tool == "document":
+                icon = "📄"
+
+            elif tool == "study":
+                icon = "📚"
+
+            elif tool == "quiz":
+                icon = "📝"
+
+            elif tool == "report":
+                icon = "📊"
+
+            else:
+                icon = "⚙️"
+
             tool_html += (
-                f'<span class="tool-pill">⚙ {tool}</span>'
+                f'<span class="tool-pill">'
+                f'{icon} {tool.upper()}'
+                f'</span>'
             )
 
         st.markdown(
@@ -567,14 +914,30 @@ if st.session_state.latest_result:
     st.markdown("<br>", unsafe_allow_html=True)
 
     st.markdown(
-        '<div class="section-title">✨ Final Result</div>',
+        '<div class="section-title">✨ NEXUS Final Result</div>',
         unsafe_allow_html=True
     )
 
     st.markdown(
         f"""
-        <div class="glass-card">
-            {st.session_state.latest_result}
+        <div class="result-card">
+
+            <div style="
+                color:#86efac;
+                font-size:13px;
+                font-weight:700;
+                margin-bottom:15px;
+            ">
+                🟢 TASK COMPLETED
+            </div>
+
+            <div style="
+                color:#e2e8f0;
+                line-height:1.8;
+            ">
+                {st.session_state.latest_result}
+            </div>
+
         </div>
         """,
         unsafe_allow_html=True
@@ -583,7 +946,7 @@ if st.session_state.latest_result:
     st.markdown("<br>", unsafe_allow_html=True)
 
     st.download_button(
-        "⬇️ Download Result",
+        "⬇️ DOWNLOAD RESULT",
         data=st.session_state.latest_result,
         file_name="nexus_result.txt",
         mime="text/plain"
@@ -596,6 +959,22 @@ if st.session_state.latest_result:
 
 st.markdown("""
 <div class="nexus-footer">
-    NEXUS AI Agent • Plan → Select → Execute → Synthesize
+    🤖 NEXUS AI Agent
+    <br>
+    <span style="color:#8b5cf6;">
+        Plan
+    </span>
+    →
+    <span style="color:#ef4444;">
+        Decide
+    </span>
+    →
+    <span style="color:#22c55e;">
+        Execute
+    </span>
+    →
+    <span style="color:#22d3ee;">
+        Synthesize
+    </span>
 </div>
 """, unsafe_allow_html=True)
