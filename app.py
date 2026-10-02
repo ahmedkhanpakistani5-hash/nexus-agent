@@ -13,27 +13,30 @@ st.set_page_config(
 )
 
 # =========================================================
-# CUSTOM UI
+# CUSTOM CSS
 # =========================================================
 
 st.markdown("""
 <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
-* {
-    font-family: 'Inter', sans-serif;
-}
-
 .stApp {
     background:
-        radial-gradient(circle at 5% 5%, rgba(168, 85, 247, 0.22), transparent 25%),
-        radial-gradient(circle at 95% 10%, rgba(239, 68, 68, 0.16), transparent 25%),
-        radial-gradient(circle at 85% 85%, rgba(34, 197, 94, 0.13), transparent 25%),
-        radial-gradient(circle at 15% 90%, rgba(6, 182, 212, 0.12), transparent 25%),
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(139, 92, 246, 0.20),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 90% 10%,
+            rgba(239, 68, 68, 0.15),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(34, 197, 94, 0.12),
+            transparent 25%
+        ),
         #050711;
-
-    color: #f8fafc;
 }
 
 #MainMenu {
@@ -44,103 +47,50 @@ footer {
     visibility: hidden;
 }
 
-header {
-    background: transparent !important;
-}
-
 .block-container {
     max-width: 1450px;
-    padding-top: 1.5rem;
+    padding-top: 2rem;
     padding-bottom: 3rem;
 }
 
 
-/* =========================================================
-   SIDEBAR
-   ========================================================= */
+/* SIDEBAR */
 
 section[data-testid="stSidebar"] {
     background:
         linear-gradient(
             180deg,
-            #0c0718 0%,
-            #10091f 50%,
-            #070b15 100%
+            #0b0615,
+            #10091f,
+            #060a13
         );
 
-    border-right: 1px solid rgba(168, 85, 247, 0.25);
-}
-
-section[data-testid="stSidebar"] * {
-    color: #e5e7eb;
+    border-right: 1px solid rgba(139, 92, 246, 0.30);
 }
 
 
-/* =========================================================
-   AI AVATAR
-   ========================================================= */
+/* AVATAR */
 
-.ai-avatar {
-    width: 105px;
-    height: 105px;
+.avatar {
+    text-align: center;
+    font-size: 70px;
 
-    margin: 5px auto 15px auto;
+    padding: 15px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle at 35% 30%,
-            #c084fc,
-            #7c3aed 45%,
-            #4c1d95 100%
+    filter:
+        drop-shadow(
+            0 0 20px rgba(168, 85, 247, 0.8)
         );
-
-    border: 3px solid rgba(255,255,255,0.15);
-
-    box-shadow:
-        0 0 20px rgba(168,85,247,0.7),
-        0 0 60px rgba(168,85,247,0.35);
-
-    font-size: 50px;
-
-    animation: pulse 3s infinite;
-}
-
-@keyframes pulse {
-
-    0% {
-        box-shadow:
-            0 0 20px rgba(168,85,247,0.7),
-            0 0 50px rgba(168,85,247,0.25);
-    }
-
-    50% {
-        box-shadow:
-            0 0 30px rgba(168,85,247,0.9),
-            0 0 80px rgba(168,85,247,0.4);
-    }
-
-    100% {
-        box-shadow:
-            0 0 20px rgba(168,85,247,0.7),
-            0 0 50px rgba(168,85,247,0.25);
-    }
 }
 
 
-/* =========================================================
-   NEXUS TITLE
-   ========================================================= */
+/* NEXUS TITLE */
 
 .nexus-title {
     text-align: center;
 
-    font-size: 31px;
+    font-size: 34px;
+
     font-weight: 800;
 
     background:
@@ -148,12 +98,13 @@ section[data-testid="stSidebar"] * {
             90deg,
             #c084fc,
             #f472b6,
-            #fb7185,
+            #ef4444,
             #4ade80,
             #22d3ee
         );
 
     -webkit-background-clip: text;
+
     -webkit-text-fill-color: transparent;
 }
 
@@ -162,132 +113,63 @@ section[data-testid="stSidebar"] * {
 
     color: #94a3b8;
 
-    font-size: 12px;
+    font-size: 11px;
 
-    letter-spacing: 3px;
+    letter-spacing: 4px;
 }
 
 
-/* =========================================================
-   STATUS CARDS
-   ========================================================= */
-
-.status-card {
-    border-radius: 18px;
-
-    padding: 18px;
-
-    text-align: center;
-
-    background: rgba(15,23,42,0.70);
-
-    backdrop-filter: blur(15px);
-
-    transition: 0.25s;
-}
-
-.status-card:hover {
-    transform: translateY(-3px);
-}
-
-.status-green {
-    border: 1px solid rgba(34,197,94,0.35);
-
-    box-shadow:
-        0 0 25px rgba(34,197,94,0.08);
-}
-
-.status-purple {
-    border: 1px solid rgba(168,85,247,0.40);
-
-    box-shadow:
-        0 0 25px rgba(168,85,247,0.10);
-}
-
-.status-red {
-    border: 1px solid rgba(239,68,68,0.35);
-
-    box-shadow:
-        0 0 25px rgba(239,68,68,0.08);
-}
-
-
-/* =========================================================
-   SECTION TITLE
-   ========================================================= */
+/* SECTION */
 
 .section-title {
-    font-size: 21px;
+    font-size: 22px;
 
     font-weight: 700;
 
     margin-top: 25px;
 
     margin-bottom: 12px;
+
+    color: #f8fafc;
 }
 
 
-/* =========================================================
-   TEXT AREA
-   ========================================================= */
+/* TEXTAREA */
 
 textarea {
-    background:
-        rgba(8, 10, 25, 0.95) !important;
+    background-color: #090d19 !important;
 
     color: white !important;
 
     border:
-        1px solid rgba(168,85,247,0.35) !important;
+        1px solid rgba(139, 92, 246, 0.45) !important;
 
-    border-radius: 18px !important;
-
-    box-shadow:
-        0 0 25px rgba(168,85,247,0.05) !important;
+    border-radius: 16px !important;
 }
 
 
-/* =========================================================
-   FILE UPLOADER
-   ========================================================= */
+/* FILE UPLOADER */
 
 [data-testid="stFileUploader"] {
-
     background:
-        linear-gradient(
-            135deg,
-            rgba(168,85,247,0.08),
-            rgba(6,182,212,0.06)
-        );
+        rgba(15, 23, 42, 0.65);
 
     border:
-        1px dashed rgba(34,211,238,0.45);
+        1px dashed rgba(34, 211, 238, 0.45);
 
-    border-radius: 18px;
+    border-radius: 16px;
 
     padding: 10px;
 }
 
 
-/* =========================================================
-   RUN BUTTON
-   ========================================================= */
+/* BUTTON */
 
 .stButton > button {
 
-    width: 100%;
-
     border: none;
 
-    border-radius: 16px;
-
-    padding: 14px;
-
-    font-size: 15px;
-
-    font-weight: 800;
-
-    color: white;
+    border-radius: 15px;
 
     background:
         linear-gradient(
@@ -297,10 +179,13 @@ textarea {
             #ef4444
         );
 
-    box-shadow:
-        0 8px 30px rgba(168,85,247,0.25);
+    color: white;
 
-    transition: all 0.25s ease;
+    font-weight: 800;
+
+    padding: 14px;
+
+    transition: 0.25s;
 }
 
 .stButton > button:hover {
@@ -308,118 +193,67 @@ textarea {
     transform: translateY(-3px);
 
     box-shadow:
-        0 12px 40px rgba(236,72,153,0.35);
+        0 10px 35px rgba(168, 85, 247, 0.35);
 }
 
 
-/* =========================================================
-   DOWNLOAD BUTTON
-   ========================================================= */
+/* DOWNLOAD */
 
 .stDownloadButton > button {
-
-    width: 100%;
 
     border-radius: 14px;
 
     background:
-        linear-gradient(
-            90deg,
-            rgba(34,197,94,0.15),
-            rgba(6,182,212,0.12)
-        );
+        rgba(34, 197, 94, 0.12);
 
     color: #86efac;
 
     border:
-        1px solid rgba(34,197,94,0.35);
-
-    font-weight: 700;
+        1px solid rgba(34, 197, 94, 0.35);
 }
 
 
-/* =========================================================
-   EXECUTION TIMELINE
-   ========================================================= */
+/* EXECUTION */
 
-.timeline-item {
-
-    padding: 14px 17px;
-
-    margin: 8px 0;
-
-    border-radius: 13px;
+.execution-item {
 
     background:
-        linear-gradient(
-            90deg,
-            rgba(168,85,247,0.10),
-            rgba(15,23,42,0.55)
-        );
+        rgba(15, 23, 42, 0.75);
 
     border-left:
         3px solid #a855f7;
+
+    border-radius: 10px;
+
+    padding: 12px 16px;
+
+    margin-bottom: 8px;
 
     color: #cbd5e1;
 }
 
 
-/* =========================================================
-   RESULT HEADER
-   ========================================================= */
+/* RESULT */
 
-.result-header {
+.result-box {
 
     background:
-        linear-gradient(
-            135deg,
-            rgba(34,197,94,0.08),
-            rgba(168,85,247,0.10)
-        );
+        rgba(10, 15, 30, 0.80);
 
     border:
-        1px solid rgba(34,197,94,0.22);
+        1px solid rgba(139, 92, 246, 0.25);
 
-    border-radius: 20px;
+    border-radius: 18px;
 
-    padding: 18px 22px;
+    padding: 20px;
 
-    margin-bottom: 15px;
-
-    box-shadow:
-        0 0 35px rgba(34,197,94,0.06);
+    margin-bottom: 10px;
 }
 
 
-/* =========================================================
-   MARKDOWN RESULT
-   ========================================================= */
+/* FOOTER */
 
-.result-container {
-
-    background:
-        rgba(8, 12, 25, 0.85);
-
-    border:
-        1px solid rgba(168,85,247,0.18);
-
-    border-radius: 20px;
-
-    padding: 25px;
-
-    line-height: 1.8;
-
-    box-shadow:
-        0 10px 40px rgba(0,0,0,0.20);
-}
-
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-.nexus-footer {
-
+.footer {
     text-align: center;
 
     color: #64748b;
@@ -431,7 +265,7 @@ textarea {
     padding-top: 20px;
 
     border-top:
-        1px solid rgba(255,255,255,0.06);
+        1px solid rgba(255,255,255,0.08);
 }
 
 </style>
@@ -464,46 +298,47 @@ if "example_goal" not in st.session_state:
 
 with st.sidebar:
 
+    st.markdown(
+        '<div class="avatar">🤖</div>',
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        '<div class="nexus-title">NEXUS</div>',
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        '<div class="nexus-subtitle">AUTONOMOUS AI AGENT</div>',
+        unsafe_allow_html=True
+    )
+
+    st.divider()
+
+    st.markdown("### ⚡ Capabilities")
+
     st.markdown("""
-    <div class="ai-avatar">
-        🤖
-    </div>
+    🧠 Intelligent Planning
 
-    <div class="nexus-title">
-        NEXUS
-    </div>
+    📄 Document Analysis
 
-    <div class="nexus-subtitle">
-        AUTONOMOUS AI
-    </div>
-    """, unsafe_allow_html=True)
+    📚 Study Planning
 
-    st.markdown("---")
+    📝 Quiz Generation
 
-    st.markdown("### ⚡ Agent Capabilities")
+    📊 Report Generation
 
-    st.markdown("""
-    🧠 **Intelligent Planning**
-
-    📄 **Document Intelligence**
-
-    📚 **Study Planning**
-
-    📝 **Quiz Generation**
-
-    📊 **Report Generation**
-
-    🔧 **Autonomous Tool Execution**
+    🔧 Autonomous Tool Execution
     """)
 
-    st.markdown("---")
+    st.divider()
 
-    st.markdown("### 💡 Quick Goals")
+    st.markdown("### 💡 Example Goals")
 
     examples = [
         "Create a study plan from this document",
         "Analyze this PDF and create a quiz",
-        "Generate a detailed report from this document",
+        "Generate a report from this document",
         "Help me prepare for my exam"
     ]
 
@@ -511,92 +346,48 @@ with st.sidebar:
 
         if st.button(
             example,
-            key=example
+            key=example,
+            use_container_width=True
         ):
+
             st.session_state.example_goal = example
+
             st.rerun()
 
-    st.markdown("---")
 
-    st.markdown("""
-    <div style="
-        text-align:center;
-        color:#64748b;
-        font-size:11px;
-    ">
-        NEXUS AI Agent<br>
-        Hackathon Edition
-    </div>
-    """, unsafe_allow_html=True)
+# =========================================================
+# MAIN TITLE
+# =========================================================
+
+st.markdown(
+    """
+    # 🤖 NEXUS AI Agent
+
+    **Autonomous AI Productivity Agent**
+    """,
+    unsafe_allow_html=True
+)
+
+st.caption(
+    "Give NEXUS a goal. It decides what to do, executes the required tools, "
+    "and generates the final result."
+)
 
 
 # =========================================================
-# STATUS CARDS
+# STATUS
 # =========================================================
 
-col1, col2, col3 = st.columns(3)
+status1, status2, status3 = st.columns(3)
 
-with col1:
+with status1:
+    st.success("🟢 AI AGENT — ONLINE")
 
-    st.markdown("""
-    <div class="status-card status-green">
+with status2:
+    st.info("🧠 AI PLANNER — READY")
 
-        🟢
-
-        <br>
-
-        <b>AGENT ONLINE</b>
-
-        <br>
-
-        <span style="color:#86efac;font-size:12px;">
-        System Ready
-        </span>
-
-    </div>
-    """, unsafe_allow_html=True)
-
-
-with col2:
-
-    st.markdown("""
-    <div class="status-card status-purple">
-
-        🧠
-
-        <br>
-
-        <b>AI PLANNER</b>
-
-        <br>
-
-        <span style="color:#c084fc;font-size:12px;">
-        Decision Engine Ready
-        </span>
-
-    </div>
-    """, unsafe_allow_html=True)
-
-
-with col3:
-
-    st.markdown("""
-    <div class="status-card status-red">
-
-        ⚡
-
-        <br>
-
-        <b>TOOLS READY</b>
-
-        <br>
-
-        <span style="color:#fca5a5;font-size:12px;">
-        Execution Available
-        </span>
-
-    </div>
-    """, unsafe_allow_html=True)
+with status3:
+    st.error("⚡ TOOLS — READY")
 
 
 # =========================================================
@@ -604,21 +395,21 @@ with col3:
 # =========================================================
 
 st.markdown(
-    '<div class="section-title">🎯 What do you want NEXUS to accomplish?</div>',
+    '<div class="section-title">🎯 What should the AI Agent accomplish?</div>',
     unsafe_allow_html=True
 )
 
 goal = st.text_area(
-    " ",
+    "Goal",
     value=st.session_state.example_goal,
     height=120,
-    placeholder="Tell NEXUS what you want to accomplish...",
+    placeholder="Example: Analyze this document and create a study plan.",
     label_visibility="collapsed"
 )
 
 
 # =========================================================
-# FILE UPLOAD
+# FILE
 # =========================================================
 
 st.markdown(
@@ -635,34 +426,38 @@ uploaded_file = st.file_uploader(
 if uploaded_file:
 
     st.success(
-        f"📄 {uploaded_file.name} loaded successfully."
+        f"📄 {uploaded_file.name} uploaded successfully."
     )
 
 
 # =========================================================
-# RUN AGENT
+# RUN
 # =========================================================
 
-st.markdown("<br>", unsafe_allow_html=True)
+st.markdown("")
 
-run_col1, run_col2, run_col3 = st.columns(
+run_left, run_middle, run_right = st.columns(
     [1, 2, 1]
 )
 
-with run_col2:
+with run_middle:
 
     run_agent = st.button(
-        "🚀 RUN NEXUS AGENT",
+        "🚀 RUN AI AGENT",
         use_container_width=True
     )
 
+
+# =========================================================
+# AGENT EXECUTION
+# =========================================================
 
 if run_agent:
 
     if not goal.strip():
 
         st.warning(
-            "Please enter a goal first."
+            "Please enter a goal for the AI Agent."
         )
 
         st.stop()
@@ -670,18 +465,18 @@ if run_agent:
     try:
 
         with st.status(
-            "🔴 NEXUS is thinking...",
+            "🤖 NEXUS AI Agent is working...",
             expanded=True
         ) as status:
 
             st.write(
-                "🧠 Understanding your goal..."
+                "🧠 AI Agent is understanding your goal..."
             )
 
             agent = NexusAgent()
 
             st.write(
-                "🟣 Creating execution plan..."
+                "🔮 AI Agent is deciding which tools are required..."
             )
 
             result = agent.run(
@@ -690,15 +485,15 @@ if run_agent:
             )
 
             st.write(
-                "🔵 Executing selected tools..."
+                "⚙️ AI Agent is executing the selected tools..."
             )
 
             st.write(
-                "🟢 Synthesizing final result..."
+                "✨ AI Agent is generating the final result..."
             )
 
             status.update(
-                label="🟢 NEXUS completed successfully!",
+                label="🟢 AI Agent completed the task!",
                 state="complete",
                 expanded=False
             )
@@ -725,11 +520,11 @@ if run_agent:
             f"Configuration error: {e}"
         )
 
-    except Exception as e:
+    except Exception:
 
         st.error(
-            "NEXUS could not complete the request. "
-            "Please check your goal, document and API configuration."
+            "The AI Agent could not complete the task. "
+            "Please check your API configuration and try again."
         )
 
 
@@ -739,14 +534,14 @@ if run_agent:
 
 if st.session_state.latest_result:
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.divider()
 
     # =====================================================
     # EXECUTION TRACE
     # =====================================================
 
     st.markdown(
-        '<div class="section-title">⚡ Agent Execution Trace</div>',
+        '<div class="section-title">⚡ AI Agent Execution</div>',
         unsafe_allow_html=True
     )
 
@@ -754,8 +549,8 @@ if st.session_state.latest_result:
 
         st.markdown(
             f"""
-            <div class="timeline-item">
-                🟣 {item}
+            <div class="execution-item">
+                🤖 {item}
             </div>
             """,
             unsafe_allow_html=True
@@ -766,31 +561,18 @@ if st.session_state.latest_result:
     # FINAL RESULT
     # =====================================================
 
-    st.markdown("<br>", unsafe_allow_html=True)
-
     st.markdown(
-        '<div class="section-title">✨ NEXUS Final Result</div>',
+        '<div class="section-title">✨ AI Agent Final Result</div>',
         unsafe_allow_html=True
     )
 
-    st.markdown("""
-    <div class="result-header">
-
-        <div style="
-            color:#86efac;
-            font-size:13px;
-            font-weight:700;
-        ">
-            🟢 TASK COMPLETED
-        </div>
-
-    </div>
-    """, unsafe_allow_html=True)
-
+    st.success(
+        "🟢 AI Agent completed the task successfully."
+    )
 
     # IMPORTANT:
-    # Render the AI response with Streamlit Markdown.
-    # Do NOT put it inside HTML.
+    # The actual AI response is rendered directly by
+    # Streamlit. No HTML wrapper around the response.
 
     st.markdown(
         st.session_state.latest_result
@@ -798,16 +580,15 @@ if st.session_state.latest_result:
 
 
     # =====================================================
-    # DOWNLOAD RESULT
+    # DOWNLOAD
     # =====================================================
 
-    st.markdown("<br>", unsafe_allow_html=True)
-
     st.download_button(
-        "⬇️ DOWNLOAD RESULT",
+        "⬇️ DOWNLOAD AI AGENT RESULT",
         data=st.session_state.latest_result,
-        file_name="nexus_result.txt",
-        mime="text/plain"
+        file_name="nexus_ai_agent_result.txt",
+        mime="text/plain",
+        use_container_width=True
     )
 
 
@@ -815,34 +596,13 @@ if st.session_state.latest_result:
 # FOOTER
 # =========================================================
 
-st.markdown("""
-<div class="nexus-footer">
-
-    🤖 NEXUS AI Agent
-
-    <br>
-
-    <span style="color:#8b5cf6;">
-        Plan
-    </span>
-
-    →
-
-    <span style="color:#ef4444;">
-        Decide
-    </span>
-
-    →
-
-    <span style="color:#22c55e;">
-        Execute
-    </span>
-
-    →
-
-    <span style="color:#22d3ee;">
-        Synthesize
-    </span>
-
-</div>
-""", unsafe_allow_html=True)
+st.markdown(
+    """
+    <div class="footer">
+        🤖 NEXUS AI Agent
+        <br><br>
+        Goal → Think → Decide → Execute → Synthesize
+    </div>
+    """,
+    unsafe_allow_html=True
+)
