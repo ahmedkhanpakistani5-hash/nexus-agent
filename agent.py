@@ -1,9 +1,7 @@
 import json
-
 from groq import Groq
 
 from config import GROQ_API_KEY, GROQ_MODEL
-
 from tools.document_tool import extract_document
 from tools.study_tool import create_study_plan
 from tools.quiz_tool import generate_quiz
@@ -14,15 +12,12 @@ class NexusAgent:
 
     def __init__(self):
         if not GROQ_API_KEY:
-            raise ValueError(
-                "Please add GROQ_API_KEY to Streamlit Secrets."
-            )
+            raise ValueError("GROQ_API_KEY is missing from Streamlit Secrets.")
 
         self.client = Groq(api_key=GROQ_API_KEY)
         self.model = GROQ_MODEL
 
     def _llm(self, system_prompt, user_prompt):
-
         response = self.client.chat.completions.create(
             model=self.model,
             messages=[
@@ -40,39 +35,25 @@ class NexusAgent:
 
         return response.choices[0].message.content
 
-    def _make_plan(self, goal, document_text):
+    def _make_plan(self, goal, document_text=""):
 
-        document_available = bool(document_text.strip())
-
-        planner_prompt = f"""
-You are the planning brain of NEXUS, an autonomous AI productivity agent.
-
-Your job is to analyze the user's goal and decide which tools are actually
-required.
-
-Available tools:
-
-1. document
-   Used to analyze uploaded documents.
-
-2. study
-   Used to create study plans.
-
-3. quiz
-   Used to generate MCQs.
-
-4. report
-   Used to create structured reports.
-
-The uploaded document is:
-{"AVAILABLE" if document_available else "NOT AVAILABLE"}
+        prompt = f"""
+You are the planning brain of an autonomous AI agent.
 
 User goal:
 {goal}
 
-Return ONLY valid JSON.
+A document was uploaded: {"Yes" if document_text else "No"}
 
-Use exactly this structure:
+Choose the tools required to complete the goal.
+
+Available tools:
+- document
+- study
+- quiz
+- report
+
+Return ONLY valid JSON:
 
 {{
     "plan": [
@@ -80,237 +61,237 @@ Use exactly this structure:
         "step 2"
     ],
     "tools": [
-        "document",
-        "study"
+        "tool_name"
     ]
 }}
 
-Rules:
-
-- Only select tools that are actually useful.
-- If a document exists and the goal requires document analysis,
-  include document.
-- If the goal asks for studying or scheduling, include study.
-- If the goal asks for questions or MCQs, include quiz.
-- If the goal asks for a report, include report.
-- Do not invent tools.
+Do not write anything outside the JSON.
 """
 
-        raw_response = self._llm(
-            "You are NEXUS's execution planner.",
-            planner_prompt
-        )
-
         try:
-            start = raw_response.find("{")
-            end = raw_response.rfind("}")
+            result = self._llm(
+                "You are a precise AI agent planner.",
+                prompt
+            )
 
-            if start == -1 or end == -1:
+            start = result.find("{")
+            end = result.rfind("}") + 1
+
+            if start == -1 or end == 0:
                 raise ValueError("Invalid planner response.")
 
-            json_text = raw_response[start:end + 1]
+            data = json.loads(result[start:end])
 
-            plan_data = json.loads(json_text)
+            plan = data.get("plan", [])
+            tools = data.get("tools", [])
 
-            if not isinstance(plan_data.get("plan"), list):
-                raise ValueError("Invalid plan.")
+            allowed_tools = [
+                "document",
+                "study",
+                "quiz",
+                "report"
+            ]
 
-            if not isinstance(plan_data.get("tools"), list):
-                raise ValueError("Invalid tools.")
+            tools = [
+                tool for tool in tools
+                if tool in allowed_tools
+            ]
 
-            return plan_data
+            if not tools:
+                tools = ["report"]
+
+            if not plan:
+                plan = ["Understand the user goal", "Execute required tools", "Generate final result"]
+
+            return plan, tools
 
         except Exception:
 
-            fallback_tools = []
-
             goal_lower = goal.lower()
 
-            if document_available:
-                fallback_tools.append("document")
+            tools = []
 
-            if any(
-                word in goal_lower
-                for word in [
-                    "study",
-                    "schedule",
-                    "learn",
-                    "revision",
-                    "plan"
-                ]
-            ):
-                fallback_tools.append("study")
+            if document_text:
+                tools.append("document")
 
-            if any(
-                word in goal_lower
-                for word in [
-                    "quiz",
-                    "mcq",
-                    "questions",
-                    "practice"
-                ]
-            ):
-                fallback_tools.append("quiz")
+            if any(word in goal_lower for word in [
+                "study",
+                "learn",
+                "schedule",
+                "plan"
+            ]):
+                tools.append("study")
 
-            if any(
-                word in goal_lower
-                for word in [
-                    "report",
-                    "analysis",
-                    "analyze"
-                ]
-            ):
-                fallback_tools.append("report")
+            if any(word in goal_lower for word in [
+                "quiz",
+                "mcq",
+                "questions",
+                "test"
+            ]):
+                tools.append("quiz")
 
-            if not fallback_tools and document_available:
-                fallback_tools.append("document")
+            if any(word in goal_lower for word in [
+                "report",
+                "analysis",
+                "analyze",
+                "summary",
+                "summarize"
+            ]):
+                tools.append("report")
 
-            return {
-                "plan": [
-                    "Understand the user's goal",
-                    "Execute the required tools",
-                    "Combine the tool outputs",
-                    "Generate the final result"
-                ],
-                "tools": fallback_tools
-            }
+            if not tools:
+                tools = ["report"]
+
+            plan = [
+                "Understand the user's goal",
+                "Select appropriate AI tools",
+                "Execute the selected tools",
+                "Synthesize the final result"
+            ]
+
+            return plan, tools
 
     def run(self, goal, uploaded_file=None):
 
         execution = []
 
-        execution.append("🟢 Goal received")
-
         document_text = ""
 
-        if uploaded_file:
+        # STEP 1: Document extraction
+        if uploaded_file is not None:
 
-            execution.append("📄 Document received")
+            execution.append("Reading uploaded document...")
 
             try:
                 document_text = extract_document(uploaded_file)
 
-            except Exception:
-                raise ValueError(
-                    "Unable to process this document."
+                execution.append(
+                    "Document successfully processed."
                 )
 
-            if not document_text.strip():
-                raise ValueError(
-                    "The uploaded document does not contain readable text."
+            except Exception as e:
+                execution.append(
+                    "Document processing failed."
                 )
 
-            execution.append("📄 Document analyzed")
+        # STEP 2: Planning
+        execution.append("AI agent is creating a plan...")
 
-        else:
-            execution.append("📄 No document provided")
-
-        execution.append("🧠 Goal analyzed")
-
-        plan_data = self._make_plan(
+        plan, tools = self._make_plan(
             goal,
             document_text
         )
 
-        plan = plan_data.get("plan", [])
-        tools = plan_data.get("tools", [])
-
-        execution.append("📋 Execution plan created")
-
-        tool_outputs = {}
-
-        if "document" in tools:
-
-            if document_text:
-
-                tool_outputs["document"] = document_text
-
-            else:
-
-                tool_outputs["document"] = (
-                    "No document was uploaded."
-                )
-
-        if "study" in tools:
-
-            execution.append(
-                "📚 Study planning tool executed"
-            )
-
-            tool_outputs["study"] = create_study_plan(
-                goal,
-                document_text,
-                self._llm
-            )
-
-        if "quiz" in tools:
-
-            execution.append(
-                "❓ Quiz generation tool executed"
-            )
-
-            tool_outputs["quiz"] = generate_quiz(
-                goal,
-                document_text,
-                self._llm
-            )
-
-        if "report" in tools:
-
-            execution.append(
-                "📝 Report generation tool executed"
-            )
-
-            tool_outputs["report"] = create_report(
-                goal,
-                document_text,
-                self._llm
-            )
-
-        synthesis_prompt = f"""
-You are NEXUS, an autonomous AI productivity agent.
-
-The user gave you this goal:
-
-{goal}
-
-The agent created this execution plan:
-
-{json.dumps(plan, indent=2)}
-
-The agent selected these tools:
-
-{json.dumps(tools, indent=2)}
-
-The actual tool outputs are:
-
-{json.dumps(tool_outputs, indent=2)}
-
-Now synthesize the outputs into one useful final response.
-
-IMPORTANT:
-
-- Do not claim that a tool was used if it was not used.
-- Do not invent information.
-- Base your answer on the actual tool outputs.
-- Make the result clear and structured.
-- Use Markdown.
-- Directly address the user's goal.
-"""
-
-        final_result = self._llm(
-            """
-You are NEXUS, an intelligent autonomous productivity agent.
-
-Your job is to combine real tool outputs into a useful final result.
-Never pretend to have performed an action that did not happen.
-""",
-            synthesis_prompt
+        execution.append(
+            "AI plan created successfully."
         )
 
-        execution.append("🔄 Tool outputs combined")
-        execution.append("🧠 Final result synthesized")
-        execution.append("✅ Final result generated")
+        # STEP 3: Tool execution
+        tool_results = {}
+
+        for tool in tools:
+
+            execution.append(
+                f"Executing {tool} tool..."
+            )
+
+            try:
+
+                if tool == "document":
+
+                    tool_results["document"] = {
+                        "status": "success",
+                        "content": document_text[:20000]
+                    }
+
+                elif tool == "study":
+
+                    tool_results["study"] = create_study_plan(
+                        goal,
+                        document_text,
+                        self._llm
+                    )
+
+                elif tool == "quiz":
+
+                    tool_results["quiz"] = generate_quiz(
+                        goal,
+                        document_text,
+                        self._llm
+                    )
+
+                elif tool == "report":
+
+                    tool_results["report"] = create_report(
+                        goal,
+                        document_text,
+                        self._llm
+                    )
+
+                execution.append(
+                    f"{tool} tool completed."
+                )
+
+            except Exception as e:
+
+                tool_results[tool] = {
+                    "status": "error",
+                    "message": str(e)
+                }
+
+                execution.append(
+                    f"{tool} tool encountered an error."
+                )
+
+        # STEP 4: Final synthesis
+
+        execution.append(
+            "AI agent is synthesizing the final answer..."
+        )
+
+        synthesis_prompt = f"""
+You are the final reasoning engine of an autonomous AI agent.
+
+User goal:
+{goal}
+
+Agent plan:
+{json.dumps(plan)}
+
+Tools executed:
+{json.dumps(tools)}
+
+Tool results:
+{json.dumps(tool_results, default=str)}
+
+Create a clear final answer for the user.
+
+Use headings and bullet points where useful.
+
+Do not mention internal errors unless they affect the result.
+
+Do not say that you are only a chatbot.
+
+Present the result as the completed work of the AI agent.
+"""
+
+        try:
+
+            final_result = self._llm(
+                "You are the final response engine of NEXUS AI Agent.",
+                synthesis_prompt
+            )
+
+        except Exception:
+
+            final_result = (
+                "The agent completed its processing, but the "
+                "final response could not be generated."
+            )
+
+        execution.append(
+            "Final result generated."
+        )
 
         return {
             "plan": plan,
