@@ -47,10 +47,26 @@ footer {
     visibility: hidden;
 }
 
+/* TOP HEADER BAR */
+
+header[data-testid="stHeader"] {
+    background: rgba(5, 7, 17, 0.65);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.40);
+    box-shadow: 0 2px 20px rgba(56, 189, 248, 0.25);
+}
+
+header[data-testid="stHeader"] * {
+    color: #7DD3FC !important;
+}
+
+header[data-testid="stHeader"] svg {
+    fill: #7DD3FC !important;
+}
+
 .block-container {
     max-width: 1450px;
-    padding-top: 2rem;
-    padding-bottom: 3rem;
+    ...
 }
 
 
