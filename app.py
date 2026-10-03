@@ -313,6 +313,59 @@ section[data-testid="stSidebar"] {
     -webkit-text-fill-color: #7DD3FC !important;
     opacity: 0.55 !important;
 }
+/* FILE UPLOADER */
+
+[data-testid="stFileUploader"] {
+    background: rgba(8, 14, 30, 0.7) !important;
+    border: 1px dashed rgba(56, 189, 248, 0.6);
+    border-radius: 18px;
+    padding: 12px;
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.2);
+    transition: 0.3s;
+}
+
+[data-testid="stFileUploader"]:hover {
+    border-color: #7DD3FC;
+    box-shadow: 0 0 28px rgba(56, 189, 248, 0.45);
+}
+
+/* the light gray area */
+[data-testid="stFileUploaderDropzone"],
+[data-testid="stFileUploaderDropzone"] > div {
+    background-color: #070b18 !important;
+    border: 1px solid rgba(56, 189, 248, 0.35) !important;
+    border-radius: 14px !important;
+}
+
+/* "200MB per file" text */
+[data-testid="stFileUploaderDropzone"] small,
+[data-testid="stFileUploaderDropzone"] span,
+[data-testid="stFileUploaderDropzone"] p,
+[data-testid="stFileUploaderDropzoneInstructions"] * {
+    color: #BAE6FD !important;
+}
+
+/* Upload button */
+[data-testid="stFileUploaderDropzone"] button {
+    background: linear-gradient(90deg, #0EA5E9, #38BDF8) !important;
+    color: #04111f !important;
+    font-weight: 700 !important;
+    border: none !important;
+    border-radius: 12px !important;
+    box-shadow: 0 0 14px rgba(56, 189, 248, 0.5);
+    transition: 0.25s;
+}
+
+[data-testid="stFileUploaderDropzone"] button:hover {
+    box-shadow: 0 0 26px rgba(125, 211, 252, 0.9);
+    transform: translateY(-2px);
+}
+
+/* uploaded file name row */
+[data-testid="stFileUploaderFile"],
+[data-testid="stFileUploaderFile"] * {
+    color: #E0F7FF !important;
+}
 /* BUTTON */
 
 .stButton > button {
