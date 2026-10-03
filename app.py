@@ -63,6 +63,43 @@ header[data-testid="stHeader"] * {
 header[data-testid="stHeader"] svg {
     fill: #7DD3FC !important;
 }
+/* NEXUS MAIN TITLE GLOW */
+
+.stApp h1 {
+    color: #E0F7FF !important;
+    font-weight: 900 !important;
+    font-size: 3.4rem !important;
+    text-shadow:
+        0 0 6px #FFFFFF,
+        0 0 12px #7DD3FC,
+        0 0 24px #38BDF8,
+        0 0 48px #0EA5E9,
+        0 0 90px #0284C7;
+    animation: titlePulse 3s ease-in-out infinite;
+}
+
+/* "Autonomous AI Productivity Agent" line */
+.stApp h1 + div p strong,
+.stApp [data-testid="stMarkdownContainer"] p strong {
+    color: #7DD3FC !important;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+}
+
+/* "Give NEXUS a goal..." line */
+.stApp [data-testid="stCaptionContainer"],
+.stApp [data-testid="stCaptionContainer"] p {
+    color: #BAE6FD !important;
+    opacity: 1 !important;
+}
+
+@keyframes titlePulse {
+    0%, 100% {
+        text-shadow: 0 0 6px #FFFFFF, 0 0 18px #38BDF8, 0 0 40px #0EA5E9;
+    }
+    50% {
+        text-shadow: 0 0 10px #FFFFFF, 0 0 28px #7DD3FC, 0 0 60px #38BDF8, 0 0 110px #0284C7;
+    }
+}
 
 .block-container {
     max-width: 1450px;
