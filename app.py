@@ -106,19 +106,47 @@ header[data-testid="stHeader"] svg {
     ...
 }
 
+/* SIDEBAR TEXT */
 
-/* SIDEBAR */
+section[data-testid="stSidebar"] p,
+section[data-testid="stSidebar"] li,
+section[data-testid="stSidebar"] span,
+section[data-testid="stSidebar"] label,
+section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] {
+    color: #E0F2FE !important;
+    opacity: 1 !important;
+    font-size: 1rem;
+}
 
-section[data-testid="stSidebar"] {
-    background:
-        linear-gradient(
-            180deg,
-            #0b0615,
-            #10091f,
-            #060a13
-        );
+/* sidebar headings: Capabilities, Example Goals */
+section[data-testid="stSidebar"] h3,
+section[data-testid="stSidebar"] h3 * {
+    color: #7DD3FC !important;
+    font-weight: 800 !important;
+    text-shadow:
+        0 0 8px rgba(56, 189, 248, 0.8),
+        0 0 20px rgba(14, 165, 233, 0.5);
+}
 
-    border-right: 1px solid rgba(139, 92, 246, 0.30);
+/* sidebar divider lines */
+section[data-testid="stSidebar"] hr {
+    border-color: rgba(56, 189, 248, 0.35) !important;
+}
+
+/* example goal buttons */
+section[data-testid="stSidebar"] .stButton > button {
+    background: rgba(56, 189, 248, 0.08) !important;
+    color: #E0F2FE !important;
+    border: 1px solid rgba(56, 189, 248, 0.45) !important;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.15);
+    font-weight: 600;
+}
+
+section[data-testid="stSidebar"] .stButton > button:hover {
+    background: rgba(56, 189, 248, 0.18) !important;
+    border-color: #7DD3FC !important;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+    transform: translateY(-2px);
 }
 
 
