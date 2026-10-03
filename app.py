@@ -129,38 +129,81 @@ section[data-testid="stSidebar"] {
     }
 }
 
-/* NEXUS TITLE */
+/* =========================================================
+   NEXUS TITLE — BRIGHT BLUE/PURPLE GLOW
+   ========================================================= */
 
 .nexus-title {
     text-align: center;
 
-    font-size: 34px;
+    font-size: 42px;
 
-    font-weight: 800;
+    font-weight: 900;
+
+    letter-spacing: 1px;
 
     background:
         linear-gradient(
             90deg,
-            #c084fc,
-            #f472b6,
-            #ef4444,
-            #4ade80,
-            #22d3ee
+            #ffffff,
+            #dbeafe,
+            #93c5fd,
+            #a78bfa,
+            #e9d5ff,
+            #ffffff
         );
 
     -webkit-background-clip: text;
-
     -webkit-text-fill-color: transparent;
+
+    text-shadow:
+        0 0 10px rgba(96, 165, 250, 1),
+        0 0 25px rgba(59, 130, 246, 0.95),
+        0 0 50px rgba(99, 102, 241, 0.8),
+        0 0 80px rgba(168, 85, 247, 0.55);
+
+    animation: nexusGlow 3s ease-in-out infinite;
+}
+
+@keyframes nexusGlow {
+
+    0% {
+        text-shadow:
+            0 0 10px rgba(96, 165, 250, 0.8),
+            0 0 25px rgba(59, 130, 246, 0.6),
+            0 0 50px rgba(99, 102, 241, 0.4);
+    }
+
+    50% {
+        text-shadow:
+            0 0 15px rgba(147, 197, 253, 1),
+            0 0 35px rgba(59, 130, 246, 1),
+            0 0 70px rgba(99, 102, 241, 0.85),
+            0 0 100px rgba(168, 85, 247, 0.6);
+    }
+
+    100% {
+        text-shadow:
+            0 0 10px rgba(96, 165, 250, 0.8),
+            0 0 25px rgba(59, 130, 246, 0.6),
+            0 0 50px rgba(99, 102, 241, 0.4);
+    }
 }
 
 .nexus-subtitle {
     text-align: center;
 
-    color: #94a3b8;
+    color: #bfdbfe;
 
     font-size: 11px;
 
+    font-weight: 700;
+
     letter-spacing: 4px;
+
+    text-shadow:
+        0 0 10px rgba(59, 130, 246, 0.8),
+        0 0 20px rgba(59, 130, 246, 0.5);
 }
 
 
