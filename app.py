@@ -296,17 +296,22 @@ div[data-baseweb="textarea"]:focus-within {
         inset 0 0 22px rgba(56, 189, 248, 0.10);
 }
 
+div[data-baseweb="textarea"] textarea,
+div[data-baseweb="base-input"] textarea,
 textarea {
     background: transparent !important;
-    color: #E0F2FE !important;
-    font-size: 1rem !important;
+    color: #E0F7FF !important;
+    -webkit-text-fill-color: #E0F7FF !important;
+    caret-color: #7DD3FC !important;
+    font-size: 1.05rem !important;
+    text-shadow: 0 0 6px rgba(56, 189, 248, 0.35);
 }
 
 textarea::placeholder {
     color: #7DD3FC !important;
+    -webkit-text-fill-color: #7DD3FC !important;
     opacity: 0.55 !important;
 }
-
 
 /* BUTTON */
 
