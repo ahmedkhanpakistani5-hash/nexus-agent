@@ -106,49 +106,59 @@ header[data-testid="stHeader"] svg {
     ...
 }
 
-/* SIDEBAR TEXT */
+/* SIDEBAR */
 
+section[data-testid="stSidebar"],
+section[data-testid="stSidebar"] > div,
+section[data-testid="stSidebar"] [data-testid="stSidebarContent"] {
+    background:
+        linear-gradient(
+            180deg,
+            #0b0615,
+            #10091f,
+            #060a13
+        ) !important;
+}
+
+section[data-testid="stSidebar"] {
+    border-right: 1px solid rgba(139, 92, 246, 0.30);
+}
+
+/* sidebar text: bright and readable */
 section[data-testid="stSidebar"] p,
 section[data-testid="stSidebar"] li,
-section[data-testid="stSidebar"] span,
 section[data-testid="stSidebar"] label,
-section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] {
+section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
     color: #E0F2FE !important;
     opacity: 1 !important;
     font-size: 1rem;
 }
 
-/* sidebar headings: Capabilities, Example Goals */
+/* headings: Capabilities, Example Goals */
 section[data-testid="stSidebar"] h3,
 section[data-testid="stSidebar"] h3 * {
     color: #7DD3FC !important;
     font-weight: 800 !important;
-    text-shadow:
-        0 0 8px rgba(56, 189, 248, 0.8),
-        0 0 20px rgba(14, 165, 233, 0.5);
 }
 
-/* sidebar divider lines */
+/* divider lines */
 section[data-testid="stSidebar"] hr {
-    border-color: rgba(56, 189, 248, 0.35) !important;
+    border-color: rgba(139, 92, 246, 0.35) !important;
 }
 
 /* example goal buttons */
 section[data-testid="stSidebar"] .stButton > button {
-    background: rgba(56, 189, 248, 0.08) !important;
+    background: rgba(139, 92, 246, 0.12) !important;
     color: #E0F2FE !important;
-    border: 1px solid rgba(56, 189, 248, 0.45) !important;
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(139, 92, 246, 0.45) !important;
     font-weight: 600;
 }
 
 section[data-testid="stSidebar"] .stButton > button:hover {
-    background: rgba(56, 189, 248, 0.18) !important;
-    border-color: #7DD3FC !important;
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+    background: rgba(139, 92, 246, 0.25) !important;
+    border-color: #A78BFA !important;
     transform: translateY(-2px);
 }
-
 
 /* AVATAR */
 
