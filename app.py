@@ -404,6 +404,60 @@ section[data-testid="stSidebar"] .stButton > button:hover {
 [data-testid="stFileUploaderFile"] * {
     color: #E0F7FF !important;
 }
+/* AI RESULT TEXT */
+
+[data-testid="stMain"] [data-testid="stMarkdownContainer"] p,
+[data-testid="stMain"] [data-testid="stMarkdownContainer"] li,
+[data-testid="stMain"] [data-testid="stMarkdownContainer"] span,
+[data-testid="stMain"] [data-testid="stMarkdownContainer"] td {
+    color: #E0F2FE !important;
+    opacity: 1 !important;
+    font-size: 1.02rem;
+    line-height: 1.7;
+}
+
+/* result headings */
+[data-testid="stMain"] [data-testid="stMarkdownContainer"] h2,
+[data-testid="stMain"] [data-testid="stMarkdownContainer"] h3,
+[data-testid="stMain"] [data-testid="stMarkdownContainer"] h4 {
+    color: #7DD3FC !important;
+    font-weight: 800 !important;
+    text-shadow:
+        0 0 8px rgba(56, 189, 248, 0.7),
+        0 0 20px rgba(14, 165, 233, 0.4);
+}
+
+/* bold text inside results */
+[data-testid="stMain"] [data-testid="stMarkdownContainer"] strong {
+    color: #BAE6FD !important;
+    font-weight: 700;
+}
+
+/* tables */
+[data-testid="stMain"] [data-testid="stMarkdownContainer"] th {
+    color: #7DD3FC !important;
+    background: rgba(56, 189, 248, 0.10) !important;
+}
+
+[data-testid="stMain"] [data-testid="stMarkdownContainer"] th,
+[data-testid="stMain"] [data-testid="stMarkdownContainer"] td {
+    border-color: rgba(56, 189, 248, 0.30) !important;
+}
+
+/* code blocks and inline code */
+[data-testid="stMain"] [data-testid="stMarkdownContainer"] code {
+    color: #7DD3FC !important;
+    background: rgba(56, 189, 248, 0.10) !important;
+}
+
+/* links and horizontal lines */
+[data-testid="stMain"] [data-testid="stMarkdownContainer"] a {
+    color: #38BDF8 !important;
+}
+
+[data-testid="stMain"] hr {
+    border-color: rgba(56, 189, 248, 0.30) !important;
+}
 /* BUTTON */
 
 .stButton > button {
