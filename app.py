@@ -101,6 +101,12 @@ header[data-testid="stHeader"] svg {
     }
 }
 
+.stApp h1,
+.stApp h1 span,
+.stApp h1 div {
+    font-size: 3.4rem !important;
+    line-height: 1.2 !important;
+}
 .block-container {
     max-width: 1450px;
     ...
@@ -408,7 +414,6 @@ section[data-testid="stSidebar"] .stButton > button:hover {
 
 [data-testid="stMain"] [data-testid="stMarkdownContainer"] p,
 [data-testid="stMain"] [data-testid="stMarkdownContainer"] li,
-[data-testid="stMain"] [data-testid="stMarkdownContainer"] span,
 [data-testid="stMain"] [data-testid="stMarkdownContainer"] td {
     color: #E0F2FE !important;
     opacity: 1 !important;
